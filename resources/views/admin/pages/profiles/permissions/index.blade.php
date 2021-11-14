@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Perfis')
+@section('title', "Permissões do perfil {$profile->name}")
 
 @section('content_header')
     <ol class="breadcrumb mb-3">
@@ -8,7 +8,8 @@
         <li class="breadcrumb-item active"><a href="{{ route('profiles.index') }}">Perfis</a></li>
     </ol>
 
-    <h1>Perfis <a href="{{ route('profiles.create') }}" class="btn btn-dark"><i class="fas fa-plus"></i></a></h1>
+    <h1>Permissões do perfil <strong>{{ $profile->name }}</strong></h1>
+        <a href="{{ route('profiles.permissions.available', $profile->id) }}" class="btn btn-dark">Adicionar Nova Permissão</a>
 @endsection
 
 @section('content')
@@ -18,7 +19,7 @@
                 @csrf
                 <div class="form-group">
                     <label>
-                        <input type="text" name="filter" placeholder="Pesquise pelo perfil" class="form-control" value="{{ $filters['filter'] ?? '' }}">
+                        <input type="text" name="filter" placeholder="Pesquise pela permissão" class="form-control" value="{{ $filters['filter'] ?? '' }}">
                     </label>
                 </div>
                 <button type="submit" class="btn btn-dark ml-2"><i class="fas fa-filter"></i></button>
@@ -33,16 +34,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($profiles as $profile)
+                @foreach ($permissions as $permission)
                     <tr>
                         <td>
-                            {{ $profile->name }}
+                            {{ $permission->name }}
                         </td>
                         <td style="width:10px;">
                             <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info">Editar</a>
-                            <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">Visualizar</a>
-                            <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
-
                         </td>
                     </tr>
                 @endforeach
@@ -51,10 +49,11 @@
         </div>
         <div class="card-footer">
             @if (isset($filters))
-                {!!  $profiles->appends($filters)->links() !!}
+                {!!  $permissions->appends($filters)->links() !!}
             @else
-                {!!  $profiles->links() !!}
+                {!!  $permissions->links() !!}
             @endif
         </div>
     </div>
 @endsection
+
