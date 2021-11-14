@@ -30,7 +30,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Preço</th>
-                        <th style="width:250px;">Ações</th>
+                        <th style="width:350px;">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,8 +44,8 @@
                             </td>
                             <td style="width:10px;">
                                 <a href="{{ route('details.plans.index', $plan->url) }}" class="btn btn-primary">Detalhes</a>
-                                <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info">Edit</a>
-                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">Ver</a>
+                                <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info">Editar</a>
+                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">Visualizar</a>
 
                             </td>
                         </tr>

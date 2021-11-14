@@ -10,17 +10,18 @@
         <li class="breadcrumb-item active"><a href="{{ route('details.plans.index', $plan->url) }}" class="active">Planos</a></li>
     </ol>
 
-    <h1>Detalhes do Plano {{ $plan->name }} <a href="{{ route('plans.create') }}" class="btn btn-dark"><i class="fas fa-plus"></i></a></h1>
+    <h1>Detalhes do Plano {{ $plan->name }} <a href="{{ route('details.plans.create', $plan->url) }}" class="btn btn-dark"><i class="fas fa-plus"></i></a></h1>
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-body">
+            @include('admin.includes.alerts')
             <table class="table table-condensed">
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th style="width:150px;">Ações</th>
+                    <th style="width:250px;">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,12 +30,10 @@
                         <td>
                             {{ $detail->name }}
                         </td>
-                        <td>
-                            R$ {{ number_format($plan->price, 2, ',', '.') }}
-                        </td>
                         <td style="width:10px;">
-                            <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info">Edit</a>
-                            <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">Ver</a>
+                            <a href="{{ route('details.plans.edit', [$plan->url, $detail->id]) }}" class="btn btn-info">Editar</a>
+                            <a href="{{ route('details.plans.show', [$plan->url, $detail->id]) }}" class="btn btn-warning">Visualizar</a>
+
                         </td>
                     </tr>
                 @endforeach
@@ -50,3 +49,5 @@
         </div>
     </div>
 @endsection
+
+
