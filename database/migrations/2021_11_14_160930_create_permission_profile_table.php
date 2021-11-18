@@ -26,7 +26,6 @@ class CreatePermissionProfileTable extends Migration
                                     ->references('id')
                                     ->on('profiles')
                                     ->onDelete('cascade');
-
         });
     }
 

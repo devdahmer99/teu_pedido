@@ -21,7 +21,7 @@
                         <input type="text" name="filter" placeholder="Pesquise pelo perfil" class="form-control" value="{{ $filters['filter'] ?? '' }}">
                     </label>
                 </div>
-                <button type="submit" class="btn btn-dark ml-2"><i class="fas fa-filter"></i></button>
+                <button type="submit" class="btn btn-dark ml-2"><i class="fas fa-list-alt"></i></button>
             </form>
         </div>
         <div class="card-body">
@@ -29,7 +29,7 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th style="width:350px;">Ações</th>
+                    <th style="width:450px;">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,7 @@
                             <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info">Editar</a>
                             <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">Visualizar</a>
                             <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
-
+                            <a href="{{ route('profiles.plans', $profile->id) }}" class="btn btn-info"><i class="fas fa-list-alt"></i></a>
                         </td>
                     </tr>
                 @endforeach
