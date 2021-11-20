@@ -11,7 +11,7 @@
     </ol>
 
     <h1>Perfis disponíveis para o Plano <strong>{{ $plan->name }}</strong></h1>
-@endsection
+@stop
 
 @section('content')
     <div class="card">
@@ -36,26 +36,28 @@
                 </thead>
                 <tbody>
                     <form action="{{ route('plans.profiles.attach', $plan->id) }}" method="POST">
+
                         @csrf
+
                         @foreach ($profiles as $profile)
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="permissions[]" value="{{ $profile->id }}">
+                                    <input type="checkbox" name="profiles[]" value="{{ $profile->id }}">
                                 </td>
                                 <td>
                                     {{ $profile->name }}
                                 </td>
                             </tr>
                         @endforeach
+
                         <tr>
                             <td colspan="500">
                                 @include('admin.includes.alerts')
 
-                                <button type="submit" class="btn btn-success">Vincular Permissão</button>
+                                <button type="submit" class="btn btn-success">Vincular Perfil</button>
                             </td>
                         </tr>
                     </form>
-
                 </tbody>
             </table>
         </div>
@@ -67,6 +69,6 @@
             @endif
         </div>
     </div>
-@endsection
+@stop
 
 
