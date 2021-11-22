@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
     ->namespace('Admin')
+    ->middleware('auth')
     ->group(function () {
 
         /**
@@ -71,10 +72,15 @@ Route::prefix('admin')
     Route::get('/', 'PlanController@index')->name('admin.index');
 });
 
+/**
+ * Site Routes
+ */
 
+Route::get('/', 'Site\SiteController@index')->name('site.home');
+Route::get('/plan/{url}', 'Site\SiteController@plan')->name('plan.subscription');
 
+/**
+ * Auth Routes
+ */
+Auth::routes();
 
-
-Route::get('/', function () {
-    return view('welcome');
-});

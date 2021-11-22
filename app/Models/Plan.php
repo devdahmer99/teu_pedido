@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @method where(string $string, $url)
  * @method create(array $data)
+ * @method static first()
  */
 class Plan extends Model
 {
@@ -22,6 +23,11 @@ class Plan extends Model
     public function profiles(): BelongsToMany
     {
         return $this->belongsToMany(Profile::class);
+    }
+
+    public function tenants(): HasMany
+    {
+        return $this->hasMany(Tenant::class);
     }
 
     public function search($filter = null)
