@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -15,9 +16,9 @@ class SiteController extends Controller
         return view('site.home.index', compact('plans'));
     }
 
-    public function plan($url)
+    public function plan($url): RedirectResponse
     {
-        if (!$plan = Plan::where('url', $url)->first()) {
+        if (!$plan = (new Plan)->where('url', $url)->first()) {
             return redirect()->back();
         }
 
